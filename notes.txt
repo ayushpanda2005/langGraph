@@ -1,0 +1,87 @@
+1) genai - branch of ai that generates new content matching human created data ex-
+llm based apps like chatgpt , diffusion models for imgs , code generating llms like
+codellama , text to speech models like 11labs , videogen like 
+Tries learning distribution of data like many cat ims and generate cat samples
+
+2)tradai = reg+classn problems 
+
+3) problems with genai chatbot -: reactive , no memory , generic advice , cant take actions
+cure = join it with company past knowledge and practises like hiring startegies , policies
+ie develop rag based chatbot . but still 3 problems remain . not only draft email but send 
+too , connect to linkedin and resume parser tool , mal apis , hr etc . this is tool 
+augmented chatbot . first 2 probs remain . also it cant adapt . next improvement can be 
+making agentic ai who devises ,monitor and executes full workflow depending on req and 
+ask only on imp steps , thus solving rest of probs . follows plan execute cycle . Multiple
+plans are made and risk is considered .
+
+4) autonomous , proactive , context aware , rag aided , adapts , goal oriented
+
+5) Autonomy controlling :
+-> Permission scope of tools and data access ex - screen candidates but dont reject .
+-> HTL(Human in the loop) Insert Checkpoints , where human approval needed
+-> Override controls - pause process manually by user
+-> guard rails / ethical boundaries - no interview on weekends
+
+6) goals stored in core memory . Constraints can be made . progress tracked using libraries
+
+7) Reasoning during -: 
+planning - goal to steps , resource estimation , tools
+execution - decison , HTL handling 
+
+8) Context awareness - progress state , environment state(ex - no of applicants so far )
+Made through short or long memory 
+
+9) 5 core components -:                                                     BOTSM
+Brain(llm) - user instructions to objectives . high lvl goals to subgoals . reasoning . 
+tool selection 
+Orchestrator(langGraph) - order of action . condn routing . retry logic with backoff . 
+delegation of tasks to tools , llms or humans .
+Tools - api calls . rag aid 
+Memory - STM = session context . LTM = goals , user preference , past decisions
+Supervisor(HTL)
+
+10) LC - open source library , build llm based application .     MPRC
+Models - unified interface for llm . , prompts , retrievers - data from vector store . Chains
+used to make rag , chatbot , text summariser , basic multiflow agents .
+RAG ->   prompt -> retriever -> llm -> tools   difference is workflow is predefined 
+                                               and agentic behaviour
+                      ^                        is behavioural and affected by context and use case
+                      |
+                      vector db 
+also flowchart for automated hiring using lc given in vid3 19:00 is highly complex with 
+loops , jumps and conditional branches ie extremely difficult with many custom glue codes ie
+py codes for logic not lc. lesser glue code the better . lg deals with node making and adding 
+conditional edges and handling state vals side by side . see45:00 . state(pydantic/typedict) accesible 
+by all nodes and is stateful and can be checkpointed . its shared bw nodes . dict implementn
+
+11) event driven vs seq . in seq u start step i imm after step i-1 ends . in event driven agent waits
+for external trigger ie stu accepts offer or wait 7 days for applicant buildup
+
+12) Fault tolerance - imp for long running workflow . since checkpointed , retry from where stored
+
+13) HTL - in lc u break chain into 2 where htl needed .
+
+14) nested wrokflows - in conduct interview has sub workflow for say different stages of implementation
+subgraphs in lg do this and also make multiagent systems .
+
+15) LangSmith to monitor lc and lg . that helps debug runtime inefficiencies and errors . can track
+llm interactions etc but fails for glue code . but ls very well integrated with lg . 
+
+16) LG - orchestration framework to build stateful , event driven , multistep ,multi agent workflows
+doing state mgmt , branching , pausing , retry , fault recovery . 
+
+17) see saved photos of llm workflows 
+
+18) reducers - how updates are made to shared state . each key in state can have its own reducer .
+for ex msg = hey gpt my name ayush . then nxt query msg updated to = hey gpt whats my name , no ans .
+we shouldve added rather than update above . used in parallel mostly
+
+19) lg exn model - inspired from google pregel a graph processing system . 
+-We define state schema , node edges . 
+-u call .compile() on StateGraph checks for inconsistencies ex- a node detatched from rest ie an
+orphaned node . 
+-then .invoke(initial_state) passed to first node  activating nodes py code . then next to other nodes 
+called message passing 
+-super steps keep going ie parallel exn/seq nodes
+- halt condn = no nodes active + no msg passed
+
