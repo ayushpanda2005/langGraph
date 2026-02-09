@@ -85,3 +85,7 @@ called message passing
 -super steps keep going ie parallel exn/seq nodes
 - halt condn = no nodes active + no msg passed
 
+20)Persistance is the ability to save state and restore it over time . after crash resume from last node.
+ex - work with older chats . threads map with our invoke calls and to fetch from db .
+Helps implement stm , fault tolerance , hitl , time travel
+
