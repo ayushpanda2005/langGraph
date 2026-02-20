@@ -89,3 +89,7 @@ called message passing
 ex - work with older chats . threads map with our invoke calls and to fetch from db .
 Helps implement stm , fault tolerance , hitl , time travel
 
+21) streaming - model starts sending tokens as soon as theyre generated . faster response . needed incase 
+u wanna cancel midway to save tokens . implemented using py generators ie an iterator that allows u to generate 
+val one at a time using yield keyword instead of return .
+
